@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Debangan & Shreya · Reception · 28 Nov 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=DM+Sans:wght@400;500;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000;
+  --surface:#181818;
+  --surface-2:#262626;
+  --line:rgba(255,255,255,.14);
+  --text:#ffffff;
+  --muted:#b3b3b3;
+  --red:#c4161c;
+  --red-deep:#7a0c10;
+  --gold:#d4a24c;
+  --gold-soft:#f1d9a3;
+  --display:'Bebas Neue',Impact,'Arial Narrow',sans-serif;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --bangla:'Tiro Bangla','Noto Serif Bengali',serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* The look is a dark streaming UI by design, so both schemes share the dark tokens */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#000000;--text:#ffffff}}
+:root[data-theme="dark"]{--bg:#000000;--text:#ffffff}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;overflow-x:hidden}
+body.locked{overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.bn{font-family:var(--bangla)}
+
+/* ───────── INTRO + PROFILES ───────── */
+#gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 2rem) 1.25rem calc(env(safe-area-inset-bottom,0px) + 2rem);transition:opacity .6s ease}
+#gate.out{opacity:0;pointer-events:none}
+.ident{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;pointer-events:none}
+.ident-bn,.ident-word{display:none}
+/* N ident: ribbon N zooms in, then the word builds from it */
+.n-mark{position:absolute;width:clamp(90px,22vw,170px);height:auto;opacity:0;filter:drop-shadow(0 0 40px rgba(229,9,20,.45))}
+.ident.go .n-mark{animation:nIn 1.7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes nIn{0%{opacity:0;transform:scale(.6)}25%{opacity:1;transform:scale(1)}68%{opacity:1;transform:scale(1.05);filter:drop-shadow(0 0 40px rgba(229,9,20,.45))}100%{opacity:0;transform:scale(3.2);filter:blur(10px)}}
+.n-stage{position:absolute;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.n-word{display:flex;align-items:baseline;font-family:'Anek Bangla',var(--bangla);font-weight:800;font-stretch:75%;font-size:clamp(3.4rem,14vw,8.5rem);line-height:1.25;letter-spacing:0}
+.n-word .nb{font-family:inherit;font-size:1em}
+/* vector logo: identical on every device, no font or shaping dependency */
+.n-logo{display:block;width:min(86vw,580px);height:auto;overflow:visible}
+.n-logo .lrw{filter:drop-shadow(0 0 22px rgba(229,9,20,.75))}
+.n-logo .lr,.n-logo .lw{opacity:0}
+.ident.go .n-logo .lr{animation:fadeUp .6s ease 1.25s forwards}
+.ident.go .n-logo .lw{animation:fadeUp .6s ease 1.55s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+.n-sub{display:block;width:min(32vw,135px);height:auto;margin-top:.9rem}
+.nav-logo{display:block;height:34px;width:auto}
+/* e-kar shown on its own: the নে cluster is clipped to just the ে, so no dotted circle appears */
+.ekar{display:inline-block;white-space:nowrap;width:.32em;clip-path:inset(-60% 0 -60% -30%);color:#e50914}
+.n-word .ekar{color:#e50914;text-shadow:0 0 28px rgba(229,9,20,.7)}
+.n-word .nred{color:#e50914;text-shadow:0 0 28px rgba(229,9,20,.7)}
+.n-word span{opacity:0;color:#f5f5f5}
+.n-word .n1{color:#e50914;text-shadow:0 0 28px rgba(229,9,20,.7)}
+.n-sub{font-family:'Anek Bangla',var(--bangla);font-weight:500;color:var(--gold);font-size:clamp(1.3rem,4vw,2.1rem);line-height:1.5;opacity:0}
+.ident.go .n-word span{animation:letterIn .55s ease forwards;animation-delay:calc(1.25s + var(--i) * 70ms)}
+.ident.go .n-sub{animation:letterIn .7s ease 2.1s forwards}
+.ident.go .n-stage{animation:stageOut .7s ease 3.4s forwards}
+@keyframes letterIn{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes stageOut{to{opacity:0;transform:scale(1.15);filter:blur(6px)}}
+.ident.go .ident-bn{animation:identIn 2.8s cubic-bezier(.2,.7,.2,1) forwards}
+.ident.go .ident-word{animation:identIn 2.8s cubic-bezier(.2,.7,.2,1) .15s forwards}
+@keyframes identIn{0%{opacity:0;transform:scale(.85);filter:blur(10px)}22%{opacity:1;transform:scale(1);filter:blur(0)}70%{opacity:1;transform:scale(1.06);filter:blur(0)}100%{opacity:0;transform:scale(1.9);filter:blur(8px)}}
+.who{text-align:center;opacity:0;transform:scale(1.04);transition:opacity .7s ease,transform .7s ease;pointer-events:none}
+.who.show{opacity:1;transform:none;pointer-events:auto}
+.who h1{font-family:var(--sans);font-weight:500;font-size:clamp(1.8rem,5vw,3.2rem);margin-bottom:2rem}
+.profiles{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(1rem,3vw,2rem)}
+.profile{display:flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--muted);width:clamp(88px,18vw,140px)}
+.avatar{width:100%;aspect-ratio:1;border-radius:6px;overflow:hidden;border:3px solid transparent;transition:border-color .2s ease}
+.avatar svg{display:block;width:100%;height:100%}
+.profile:hover .avatar,.profile:focus-visible .avatar{border-color:var(--text)}
+.profile:hover,.profile:focus-visible{color:var(--text)}
+.profile span{font-size:clamp(.85rem,2vw,1.1rem)}
+.who p{margin-top:2.5rem;color:var(--muted);font-size:.85rem}
+
+/* ───────── NAV ───────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:2rem;padding:calc(env(safe-area-inset-top,0px) + .9rem) clamp(1rem,4vw,3.5rem) .9rem;background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,0));transition:background .3s ease}
+.nav.solid{background:var(--bg)}
+.brand{display:flex;align-items:baseline;gap:.5rem;text-decoration:none}
+.brand{align-items:center}
+.brand .w{display:flex;align-items:baseline;font-family:'Anek Bangla',var(--bangla);font-weight:800;font-stretch:75%;font-size:1.9rem;line-height:1.25;color:#f5f5f5}
+.brand .w b{font-weight:inherit;color:#e50914}
+.nav ul{list-style:none;display:flex;gap:1.3rem;font-size:.88rem}
+.nav ul a{text-decoration:none;color:#e5e5e5}
+.nav ul a:hover{color:var(--muted)}
+.nav .me{margin-left:auto;display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--muted)}
+.nav .me .mini{width:32px;height:32px;border-radius:4px;overflow:hidden}
+.nav .me .mini svg{width:100%;height:100%;display:block}
+.nav .me{border-radius:4px;padding:.15rem}
+.nav .me .caret{width:10px;height:6px;transition:transform .2s ease}
+.nav .me:hover{color:var(--text)}
+.nav .me:hover .caret{transform:rotate(180deg)}
+@media(max-width:720px){.nav ul{display:none}}
+
+/* ───────── BILLBOARD ───────── */
+.bill{position:relative;min-height:min(100vh,900px);min-height:min(100svh,900px);display:flex;align-items:flex-end;padding:0 clamp(1rem,4vw,3.5rem) clamp(4rem,12vh,8rem);overflow:hidden;isolation:isolate}
+.bill-art{position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(ellipse 60% 70% at 78% 40%,rgba(196,22,28,.55),transparent 70%),
+  radial-gradient(ellipse 35% 40% at 70% 35%,rgba(212,162,76,.35),transparent 70%),
+  radial-gradient(ellipse 80% 60% at 100% 100%,rgba(122,12,16,.6),transparent 70%),
+  #090303}
+.bill-art svg{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:min(78vw,820px);height:auto;opacity:.5}
+.bill-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,0) 75%),linear-gradient(0deg,var(--bg) 0%,rgba(0,0,0,0) 30%)}
+.bill-copy{max-width:620px}
+.series{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;font-family:var(--display);letter-spacing:.35em;font-size:.95rem;color:var(--muted)}
+.series .bn{font-family:var(--bangla);color:var(--red);font-size:1.4rem;letter-spacing:0}
+.title{font-family:var(--serif);font-weight:500;line-height:.86;font-size:clamp(3.6rem,11vw,8.5rem);letter-spacing:-.01em;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.title i{display:block;font-weight:400;color:var(--gold);font-size:.55em;line-height:1.1;margin:.05em 0 .02em .1em}
+.title-bn{font-family:var(--bangla);color:var(--gold-soft);font-size:clamp(1.1rem,2.6vw,1.6rem);margin-top:.6rem}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .9rem;margin:1.3rem 0 .9rem;font-size:.95rem}
+.meta .match{color:#46d369;font-weight:700}
+.meta .rating{border:1px solid rgba(255,255,255,.5);padding:0 .45em;font-size:.8rem}
+.meta .hd{border:1px solid rgba(255,255,255,.5);border-radius:3px;padding:0 .35em;font-size:.7rem;font-weight:700}
+.greet-bn{color:var(--gold-soft);font-size:clamp(1.05rem,2vw,1.3rem);margin-bottom:.5rem;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.synopsis{font-size:clamp(1rem,1.6vw,1.15rem);color:#e5e5e5;max-width:52ch;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1.6rem .7rem 1.3rem;border-radius:4px;font-weight:700;font-size:1.05rem;text-decoration:none;transition:opacity .15s ease}
+.btn:hover{opacity:.82}
+.btn svg{width:22px;height:22px;flex-shrink:0}
+.btn-play{background:#fff;color:#000}
+.btn-info{background:rgba(109,109,110,.7);color:#fff}
+
+/* ───────── ROWS ───────── */
+main{position:relative;z-index:2;margin-top:-3rem}
+.row{padding:0 clamp(1rem,4vw,3.5rem);margin-bottom:3.5rem}
+.row h2{font-size:clamp(1.1rem,2vw,1.45rem);font-weight:700;margin-bottom:.9rem;display:flex;align-items:baseline;gap:.7rem}
+.row h2 .bn{font-weight:400;color:var(--muted);font-size:.85em}
+
+/* countdown strip */
+.premiere{display:grid;grid-template-columns:auto 1fr;gap:1.5rem 2.5rem;align-items:center;background:linear-gradient(100deg,var(--red-deep),#1a0506 60%);border-radius:6px;padding:clamp(1.3rem,3vw,2rem) clamp(1.3rem,3vw,2.5rem)}
+.premiere .lbl{font-family:var(--display);font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:.06em;line-height:1}
+.premiere .lbl small{display:block;font-family:var(--sans);font-size:.85rem;letter-spacing:0;color:var(--gold-soft);margin-top:.35rem}
+.clock{display:flex;gap:clamp(.5rem,2vw,1.5rem);justify-content:flex-end}
+.unit{text-align:center;min-width:3.6ch}
+.unit b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1;font-variant-numeric:tabular-nums}
+.unit span{font-size:.75rem;color:var(--muted)}
+@media(max-width:640px){.premiere{grid-template-columns:1fr}.clock{justify-content:space-between}}
+
+/* title cards */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem}
+@media(max-width:820px){.cards{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem;scrollbar-width:none}.cards::-webkit-scrollbar{display:none}.cards>*{scroll-snap-align:start}}
+.tile{background:var(--surface);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s ease}
+@media(hover:hover){.tile:hover{transform:scale(1.04);box-shadow:0 18px 40px rgba(0,0,0,.7);z-index:2;position:relative}}
+.tile-art{position:relative;aspect-ratio:16/9;overflow:hidden}
+.tile-art svg{width:100%;height:100%;display:block}
+.tile-art .tag{position:absolute;left:.7rem;bottom:.6rem;font-family:var(--display);font-size:1.5rem;letter-spacing:.04em;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.tile-body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.tile-body h3{font-size:1.05rem;font-weight:700}
+.tile-body p{color:var(--muted);font-size:.92rem}
+.tile-body .act{margin-top:auto;padding-top:.8rem}
+.pill{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1rem;border-radius:4px;background:#fff;color:#000;font-weight:700;font-size:.9rem;text-decoration:none}
+.pill:hover{opacity:.85}
+
+/* scratch */
+.scratch{position:absolute;inset:0;touch-action:none;cursor:grab;transition:opacity .7s ease}
+.scratch.done{opacity:0;pointer-events:none}
+.reveal-face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at 50% 30%,#3a0a0c,#120304)}
+.reveal-face .d{font-family:var(--display);font-size:clamp(2.2rem,5vw,3rem);line-height:1;letter-spacing:.03em}
+.reveal-face .t{font-family:var(--serif);font-style:italic;color:var(--gold-soft);font-size:1.25rem;margin-top:.3rem}
+.hint{font-size:.8rem;color:var(--muted)}
+
+/* letter panel (detail page) */
+.letter{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:2.5rem;background:var(--surface);border-radius:6px;padding:clamp(1.4rem,3.5vw,2.6rem)}
+.letter blockquote{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.5rem);line-height:1.55;color:#ededed;max-width:58ch}
+.letter blockquote p+p{margin-top:1rem}
+.letter cite{display:block;margin-top:1.3rem;font-style:normal;font-family:var(--sans);font-size:.95rem;color:var(--gold)}
+.credits{font-size:.92rem;color:var(--muted);display:flex;flex-direction:column;gap:.9rem;border-left:1px solid var(--line);padding-left:2rem}
+.credits b{color:#777;font-weight:400}
+.credits span{color:#e5e5e5}
+@media(max-width:760px){.letter{grid-template-columns:1fr}.credits{border-left:0;border-top:1px solid var(--line);padding:1.5rem 0 0}}
+
+/* blessing */
+.bless{text-align:center;padding:clamp(2.5rem,7vw,5rem) 1.2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bless q{display:block;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.25;max-width:24ch;margin:0 auto;quotes:"“" "”"}
+.bless .bn{display:block;margin-top:1.2rem;color:var(--gold-soft);font-size:clamp(1rem,2vw,1.2rem)}
+.bless small{display:block;margin-top:.8rem;color:var(--muted)}
+
+footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem;display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:space-between}
+
+/* ───────── MODAL ───────── */
+.modal{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.7);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 2rem) 1rem calc(env(safe-area-inset-bottom,0px) + 2rem);opacity:0;pointer-events:none;transition:opacity .25s ease}
+.modal.open{opacity:1;pointer-events:auto}
+.sheet{width:min(820px,100%);background:var(--surface);border-radius:8px;overflow:hidden;transform:translateY(16px) scale(.98);transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.modal.open .sheet{transform:none}
+.sheet-hero{position:relative;aspect-ratio:16/7;background:radial-gradient(ellipse 70% 90% at 70% 40%,rgba(196,22,28,.6),transparent 70%),radial-gradient(ellipse 40% 50% at 65% 35%,rgba(212,162,76,.35),transparent 70%),#0d0304;display:flex;align-items:flex-end;padding:1.5rem 2rem}
+.sheet-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--surface),transparent 55%)}
+.sheet-hero h3{position:relative;z-index:1;font-family:var(--serif);font-weight:500;font-size:clamp(2rem,5vw,3.2rem);line-height:1}
+.close{position:absolute;top:.9rem;right:.9rem;z-index:2;width:38px;height:38px;border-radius:50%;background:#181818;display:grid;place-items:center}
+.close svg{width:18px;height:18px}
+.sheet-body{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:2rem;padding:1rem 2rem 2.2rem}
+.sheet-body p{color:#e5e5e5}
+.sheet-body dl{font-size:.9rem;display:flex;flex-direction:column;gap:.6rem}
+.sheet-body dt{display:inline;color:#777}
+.sheet-body dd{display:inline;color:#e5e5e5}
+@media(max-width:640px){.sheet-body{grid-template-columns:1fr;padding:1rem 1.3rem 1.8rem}.sheet-hero{padding:1.2rem 1.3rem}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- reusable alpona motif -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="alpona">
+      <circle r="18" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <circle r="40" fill="none" stroke="currentColor" stroke-width="1"/>
+      <circle r="78" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 6"/>
+      <circle r="120" fill="none" stroke="currentColor" stroke-width=".8"/>
+      <g fill="none" stroke="currentColor" stroke-width="1.1">
+        <path id="petal" d="M0-42C14-58 14-82 0-104C-14-82-14-58 0-42Z"/>
+        <use href="#petal" transform="rotate(30)"/><use href="#petal" transform="rotate(60)"/><use href="#petal" transform="rotate(90)"/>
+        <use href="#petal" transform="rotate(120)"/><use href="#petal" transform="rotate(150)"/><use href="#petal" transform="rotate(180)"/>
+        <use href="#petal" transform="rotate(210)"/><use href="#petal" transform="rotate(240)"/><use href="#petal" transform="rotate(270)"/>
+        <use href="#petal" transform="rotate(300)"/><use href="#petal" transform="rotate(330)"/>
+      </g>
+      <g fill="currentColor">
+        <circle cy="-120" r="3"/><circle cy="120" r="3"/><circle cx="-120" r="3"/><circle cx="120" r="3"/>
+        <circle cx="85" cy="85" r="2.4"/><circle cx="-85" cy="85" r="2.4"/><circle cx="85" cy="-85" r="2.4"/><circle cx="-85" cy="-85" r="2.4"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<!-- ═════ GATE: ident + who's watching ═════ -->
+<div id="gate">
+  <div class="ident" id="ident" aria-hidden="true">
+    <svg class="n-mark" viewBox="0 0 100 150"><defs><linearGradient id="nStem" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b1060f"/><stop offset="1" stop-color="#7a0409"/></linearGradient></defs><rect x="0" y="0" width="28" height="150" fill="url(#nStem)"/><rect x="72" y="0" width="28" height="150" fill="url(#nStem)"/><polygon points="0,0 28,0 100,150 72,150" fill="#e50914"/></svg>
+    <div class="n-stage">
+      <svg class="n-logo" viewBox="-40 -963 2954 1066" role="img" aria-label="নিমন্ত্রণ"><g class="lrw"><g class="lr" fill="#e50914"><path d="M290 -559 L205 -559 L205 -0 L65 -0 L65 -559 L-20 -559 L-20 -671 L65 -671 L65 -713 Q65 -819 134 -871 Q202 -923 321 -923 Q392 -923 468 -906 Q545 -890 586 -872 L586 -766 Q542 -782 468 -796 Q395 -811 332 -811 Q206 -811 206 -714 L206 -671 L290 -671 L290 -559 Z"/><path transform="translate(178 0) scale(1.1093 0.9955)" d="M219 -0 L65 -0 L65 -674 L234 -674 L391 -395 Q424 -336 448 -284 Q473 -233 480 -212 L488 -190 Q478 -264 478 -395 L478 -674 L632 -674 L632 -0 L463 -0 L302 -279 Q270 -333 246 -386 Q221 -438 212 -463 L204 -488 Q219 -398 219 -279 L219 -0 Z"/><rect x="250" y="-671" width="669" height="90"/></g></g><g class="lw" fill="#f5f5f5"><path transform="translate(899.0 0)" d="M680 -559 L565 -559 L565 -0 L425 -0 L425 -85 Q425 -158 388 -202 Q350 -246 283 -246 Q241 -246 218 -228 Q194 -211 194 -180 Q194 -149 216 -134 Q237 -119 270 -119 Q288 -119 308 -121 L308 -6 Q280 -0 241 -0 Q158 -0 104 -47 Q51 -94 51 -181 Q51 -247 86 -292 Q120 -336 179 -355 Q168 -408 134 -431 Q101 -454 41 -454 L41 -559 L-20 -559 L-20 -671 L680 -671 L680 -559 Z M425 -289 L425 -559 L168 -559 Q228 -532 264 -481 Q301 -430 311 -364 Q389 -351 425 -289 Z"/><path transform="translate(1539.0 0)" d="M664 63 L531 63 L531 42 Q526 17 497 17 Q477 17 416 34 Q355 51 317 51 Q246 51 198 12 Q149 -26 149 -109 Q149 -133 154 -163 L275 -163 Q273 -141 273 -128 Q273 -63 338 -63 Q363 -63 414 -77 Q465 -91 485 -91 Q513 -91 531 -76 L531 -308 Q531 -360 482 -360 Q446 -360 420 -340 Q395 -320 395 -286 Q395 -233 453 -233 Q465 -233 473 -234 L473 -129 Q459 -127 433 -127 Q359 -127 311 -166 Q263 -204 263 -286 Q263 -324 277 -357 Q266 -363 247 -376 Q228 -389 214 -396 Q201 -402 188 -402 Q152 -402 152 -358 Q152 -341 156 -326 L38 -326 Q30 -353 30 -388 Q30 -443 64 -481 Q97 -519 162 -519 Q191 -519 216 -508 Q242 -498 258 -486 Q274 -473 293 -462 Q312 -452 329 -452 Q378 -452 378 -513 Q378 -540 374 -559 L-20 -559 L-20 -671 L747 -671 L747 -559 L506 -559 Q513 -531 513 -490 Q513 -478 512 -473 Q585 -466 624 -422 Q664 -378 664 -306 L664 63 Z"/><path transform="translate(2266.0 0)" d="M628 -559 L543 -559 L543 -0 L403 -0 L403 -409 Q403 -477 370 -519 Q336 -561 272 -561 Q229 -561 204 -537 Q180 -513 180 -474 Q180 -434 204 -414 Q227 -395 265 -395 Q290 -395 314 -399 L314 -277 Q279 -270 248 -270 Q152 -270 96 -323 Q40 -376 40 -474 Q40 -566 96 -624 Q153 -681 241 -681 Q352 -681 403 -602 L403 -751 L543 -751 L543 -671 L628 -671 L628 -559 Z"/></g></svg>
+      <svg class="n-sub" viewBox="-380 -953 3771 993" role="img" aria-label="বউভাত"><defs><linearGradient id="subLineL" x1="0" x2="1"><stop offset="0" stop-color="#cfae6e" stop-opacity="0"/><stop offset="1" stop-color="#cfae6e"/></linearGradient><linearGradient id="subLineR" x1="0" x2="1"><stop offset="0" stop-color="#cfae6e"/><stop offset="1" stop-color="#cfae6e" stop-opacity="0"/></linearGradient></defs><rect x="-370" y="-317" width="272" height="6" fill="url(#subLineL)"/><rect x="3108" y="-317" width="272" height="6" fill="url(#subLineR)"/><g fill="#cfae6e"><path d="M-89 -314l24 -24l24 24l-24 24z"/><path d="M3052 -314l24 -24l24 24l-24 24z"/><path transform="translate(0 0)" d="M407 -0 Q375 -54 326 -98 Q277 -141 214 -171 Q152 -201 77 -213 L29 -333 Q123 -390 224 -437 Q325 -483 427 -512 L407 -472 L407 -531 L-10 -531 L-10 -628 L610 -628 L610 -531 L519 -531 L519 -0 L407 -0 Z M412 -107 Q410 -129 408 -153 Q406 -177 406 -206 L406 -427 L426 -399 Q377 -385 326 -363 Q276 -342 227 -316 Q177 -291 132 -261 L132 -292 Q170 -288 212 -273 Q253 -258 294 -233 Q335 -209 369 -177 Q403 -146 425 -107 L412 -107 Z"/><path transform="translate(600 0)" d="M504 -621 Q504 -662 488 -679 Q472 -696 431 -696 L294 -696 Q223 -696 172 -713 Q120 -731 92 -767 Q65 -804 65 -861 Q65 -874 66 -887 Q68 -900 70 -913 L179 -906 Q177 -896 176 -888 Q175 -880 175 -873 Q175 -832 201 -814 Q228 -796 278 -796 L424 -796 Q481 -796 523 -778 Q565 -759 588 -721 Q611 -682 612 -621 L504 -621 Z M422 -11 Q354 -11 295 -33 Q236 -55 185 -105 Q135 -156 94 -240 Q52 -323 21 -447 L126 -474 Q159 -346 199 -268 Q240 -190 293 -154 Q347 -119 416 -119 Q486 -119 525 -153 Q564 -186 564 -243 Q564 -286 552 -316 Q540 -345 520 -364 L609 -373 Q576 -324 541 -293 Q505 -261 469 -246 Q433 -230 396 -230 Q331 -230 299 -273 Q268 -315 268 -390 L268 -531 L-10 -531 L-10 -628 L728 -628 L728 -531 L382 -531 L382 -378 Q382 -353 390 -342 Q397 -330 414 -330 Q439 -330 465 -355 Q492 -379 525 -431 L611 -445 Q641 -402 659 -347 Q676 -293 676 -241 Q676 -176 648 -124 Q620 -72 563 -42 Q506 -11 422 -11 Z"/><path transform="translate(1318 0)" d="M408 -28 Q316 -28 242 -70 Q167 -112 112 -206 Q56 -299 19 -453 L123 -479 Q152 -364 189 -288 Q226 -212 278 -175 Q330 -137 401 -137 Q447 -137 477 -154 Q507 -172 522 -202 Q537 -232 537 -271 Q537 -311 526 -343 Q515 -375 495 -398 L580 -422 Q545 -341 495 -301 Q445 -260 379 -260 Q319 -260 280 -292 Q241 -323 241 -376 Q241 -411 264 -437 Q287 -462 329 -462 Q356 -462 374 -451 Q392 -439 401 -421 Q410 -403 410 -384 Q410 -352 390 -334 Q370 -316 339 -316 Q316 -316 301 -329 Q285 -342 278 -360 Q270 -377 270 -391 L345 -402 Q345 -384 359 -373 Q373 -363 394 -363 Q417 -363 442 -385 Q467 -407 489 -464 L581 -479 Q617 -425 634 -371 Q652 -317 652 -260 Q652 -197 624 -144 Q597 -91 542 -59 Q488 -28 408 -28 Z M-10 -531 L-10 -628 L714 -628 L714 -531 L-10 -531 Z"/><path transform="translate(2022 0)" d="M286 -628 L286 -531 L195 -531 L195 -0 L81 -0 L81 -459 Q70 -492 49 -511 Q28 -531 -4 -531 L-10 -531 L-10 -628 L10 -628 Q37 -628 66 -601 Q95 -574 102 -520 L91 -520 Q88 -545 86 -575 Q84 -604 84 -627 L84 -697 L171 -697 L194 -628 L286 -628 Z"/><path transform="translate(2298 0)" d="M413 -28 Q323 -28 249 -70 Q174 -112 117 -206 Q60 -299 21 -453 L125 -479 Q155 -364 194 -288 Q232 -212 285 -175 Q338 -137 409 -137 Q447 -137 475 -147 Q503 -156 521 -174 Q540 -192 549 -217 Q558 -241 558 -271 Q558 -327 530 -361 Q502 -396 452 -396 Q432 -396 420 -391 Q407 -385 401 -376 Q396 -366 396 -351 L308 -373 Q308 -390 317 -409 Q326 -427 345 -440 Q363 -453 390 -453 Q423 -453 442 -440 Q462 -427 470 -407 Q479 -387 479 -364 Q479 -321 452 -296 Q426 -270 379 -270 Q333 -270 305 -299 Q277 -328 277 -373 Q277 -426 319 -459 Q360 -492 430 -492 Q510 -492 563 -461 Q616 -431 643 -378 Q670 -325 670 -257 Q670 -192 642 -140 Q614 -88 557 -58 Q500 -28 413 -28 Z M-10 -531 L-10 -628 L723 -628 L723 -531 L-10 -531 Z"/></g></svg>
+    </div>
+  </div>
+  <div class="who" id="who">
+    <h1>Who’s watching?</h1>
+    <div class="profiles" id="profiles"></div>
+    <p>Pick a profile to open your invitation</p>
+  </div>
+</div>
+
+<!-- ═════ NAV ═════ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="brand" href="#top" aria-label="নিমন্ত্রণ, home"><svg class="nav-logo" viewBox="-40 -963 2954 1066" role="img" aria-label="নিমন্ত্রণ"><g fill="#e50914"><path d="M290 -559 L205 -559 L205 -0 L65 -0 L65 -559 L-20 -559 L-20 -671 L65 -671 L65 -713 Q65 -819 134 -871 Q202 -923 321 -923 Q392 -923 468 -906 Q545 -890 586 -872 L586 -766 Q542 -782 468 -796 Q395 -811 332 -811 Q206 -811 206 -714 L206 -671 L290 -671 L290 -559 Z"/><path transform="translate(178 0) scale(1.1093 0.9955)" d="M219 -0 L65 -0 L65 -674 L234 -674 L391 -395 Q424 -336 448 -284 Q473 -233 480 -212 L488 -190 Q478 -264 478 -395 L478 -674 L632 -674 L632 -0 L463 -0 L302 -279 Q270 -333 246 -386 Q221 -438 212 -463 L204 -488 Q219 -398 219 -279 L219 -0 Z"/><rect x="250" y="-671" width="669" height="90"/></g><g fill="#f5f5f5"><path transform="translate(899.0 0)" d="M680 -559 L565 -559 L565 -0 L425 -0 L425 -85 Q425 -158 388 -202 Q350 -246 283 -246 Q241 -246 218 -228 Q194 -211 194 -180 Q194 -149 216 -134 Q237 -119 270 -119 Q288 -119 308 -121 L308 -6 Q280 -0 241 -0 Q158 -0 104 -47 Q51 -94 51 -181 Q51 -247 86 -292 Q120 -336 179 -355 Q168 -408 134 -431 Q101 -454 41 -454 L41 -559 L-20 -559 L-20 -671 L680 -671 L680 -559 Z M425 -289 L425 -559 L168 -559 Q228 -532 264 -481 Q301 -430 311 -364 Q389 -351 425 -289 Z"/><path transform="translate(1539.0 0)" d="M664 63 L531 63 L531 42 Q526 17 497 17 Q477 17 416 34 Q355 51 317 51 Q246 51 198 12 Q149 -26 149 -109 Q149 -133 154 -163 L275 -163 Q273 -141 273 -128 Q273 -63 338 -63 Q363 -63 414 -77 Q465 -91 485 -91 Q513 -91 531 -76 L531 -308 Q531 -360 482 -360 Q446 -360 420 -340 Q395 -320 395 -286 Q395 -233 453 -233 Q465 -233 473 -234 L473 -129 Q459 -127 433 -127 Q359 -127 311 -166 Q263 -204 263 -286 Q263 -324 277 -357 Q266 -363 247 -376 Q228 -389 214 -396 Q201 -402 188 -402 Q152 -402 152 -358 Q152 -341 156 -326 L38 -326 Q30 -353 30 -388 Q30 -443 64 -481 Q97 -519 162 -519 Q191 -519 216 -508 Q242 -498 258 -486 Q274 -473 293 -462 Q312 -452 329 -452 Q378 -452 378 -513 Q378 -540 374 -559 L-20 -559 L-20 -671 L747 -671 L747 -559 L506 -559 Q513 -531 513 -490 Q513 -478 512 -473 Q585 -466 624 -422 Q664 -378 664 -306 L664 63 Z"/><path transform="translate(2266.0 0)" d="M628 -559 L543 -559 L543 -0 L403 -0 L403 -409 Q403 -477 370 -519 Q336 -561 272 -561 Q229 -561 204 -537 Q180 -513 180 -474 Q180 -434 204 -414 Q227 -395 265 -395 Q290 -395 314 -399 L314 -277 Q279 -270 248 -270 Q152 -270 96 -323 Q40 -376 40 -474 Q40 -566 96 -624 Q153 -681 241 -681 Q352 -681 403 -602 L403 -751 L543 -751 L543 -671 L628 -671 L628 -559 Z"/></g></svg></a>
+  <ul>
+    <li><a href="#top">Home</a></li>
+    <li><a href="#premiere">Countdown</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#letter" id="navLetter">The letter</a></li>
+  </ul>
+  <button class="me" id="switchProfile" aria-label="Switch profile" title="Switch profile"><span id="meName"></span><span class="mini" id="meAvatar"></span><svg class="caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+</nav>
+
+<!-- ═════ BILLBOARD ═════ -->
+<header class="bill" id="top">
+  <div class="bill-art" aria-hidden="true">
+    <svg viewBox="-130 -130 260 260" style="color:var(--gold)"><use href="#alpona"/></svg>
+  </div>
+  <div class="bill-copy">
+    <div class="series"><span class="bn">শুভ অভ্যর্থনা</span> A Deb family premiere</div>
+    <h1 class="title">Debangan<i>&amp;</i>Shreya</h1>
+    <div class="title-bn">দেবাঙ্গন ও শ্রেয়া</div>
+    <div class="meta">
+      <span class="match">100% Match</span><span>2026</span><span class="rating">U</span><span>Wedding reception</span><span class="hd">HD</span>
+    </div>
+    <p class="greet-bn bn" id="greetBn" hidden></p>
+    <p class="synopsis" id="synopsis">After years of quiet dreams, our beloved Debangan has found in Shreya not just a partner, but a home. One evening, one family, and a seat saved just for you.</p>
+    <div class="ctas">
+      <a class="btn btn-play" href="#details"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4v16a1 1 0 0 0 1.5.86l13-8a1 1 0 0 0 0-1.72l-13-8A1 1 0 0 0 6 4z"/></svg>Play</a>
+      <button class="btn btn-info" id="openInfo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01" stroke-linecap="round"/></svg>More info</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- countdown -->
+  <section class="row" id="premiere" aria-label="Countdown">
+    <div class="premiere">
+      <div class="lbl">Premieres Saturday<small>28 November 2026, 7:00 PM</small></div>
+      <div class="clock" role="timer" aria-live="off">
+        <div class="unit"><b id="cd-d">--</b><span>Days</span></div>
+        <div class="unit"><b id="cd-h">--</b><span>Hours</span></div>
+        <div class="unit"><b id="cd-m">--</b><span>Minutes</span></div>
+        <div class="unit"><b id="cd-s">--</b><span>Seconds</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- details row -->
+  <section class="row" id="details">
+    <h2>Because you’re invited <span class="bn">অনুষ্ঠানের বিবরণ</span></h2>
+    <div class="cards">
+      <article class="tile">
+        <div class="tile-art" id="dateArt">
+          <div class="reveal-face">
+            <div class="d">Sat 28 Nov 2026</div>
+            <div class="t">7:00 in the evening</div>
+          </div>
+          <canvas class="scratch" id="scratch" aria-label="Scratch to reveal the date"></canvas>
+        </div>
+        <div class="tile-body">
+          <h3>Save the date</h3>
+          <p id="scratchHint">Scratch the card above to reveal when the show begins.</p>
+          <div class="act"><button class="pill" id="revealBtn">Reveal now</button></div>
+        </div>
+      </article>
+
+      <article class="tile">
+        <div class="tile-art">
+          <svg viewBox="0 0 320 180" aria-hidden="true">
+            <rect width="320" height="180" fill="#120708"/>
+            <g stroke="#3a1a1b" stroke-width="1">
+              <path d="M0 40H320M0 95H320M0 150H320M60 0V180M150 0V180M250 0V180"/>
+            </g>
+            <path d="M0 120C80 110 120 60 200 70S300 30 320 20" fill="none" stroke="#5a2a2c" stroke-width="6"/>
+            <circle cx="160" cy="82" r="34" fill="rgba(196,22,28,.18)"/>
+            <path d="M160 52c-12 0-21 9-21 21 0 16 21 37 21 37s21-21 21-37c0-12-9-21-21-21z" fill="#c4161c"/>
+            <circle cx="160" cy="73" r="7" fill="#f1d9a3"/>
+          </svg>
+          <span class="tag">The venue</span>
+        </div>
+        <div class="tile-body">
+          <h3>Eden City AB Block Ground</h3>
+          <p>Kolkata, West Bengal</p>
+          <div class="act"><a class="pill" href="https://maps.app.goo.gl/3qzcDh7nHGPqvvb66" target="_blank" rel="noopener">Open in Google Maps</a></div>
+        </div>
+      </article>
+
+      <article class="tile">
+        <div class="tile-art">
+          <svg viewBox="0 0 320 180" aria-hidden="true">
+            <rect width="320" height="180" fill="#1a0a05"/>
+            <g transform="translate(160 90) scale(.62)" style="color:#d4a24c" opacity=".7"><use href="#alpona"/></g>
+          </svg>
+          <span class="tag">Hosted by</span>
+        </div>
+        <div class="tile-body">
+          <h3>Debasish Deb &amp; Kabita Deb</h3>
+          <p class="bn">দেবাশীষ দেব ও কবিতা দেব</p>
+          <div class="act"><a class="pill" href="#letter">Read their letter</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- letter -->
+  <section class="row" id="letter">
+    <h2 id="letterTitle">A letter from the family <span class="bn">আমন্ত্রণ</span></h2>
+    <div class="letter">
+      <blockquote id="letterBody">
+        <p>After years of watching him grow, of dreams held quietly in our hearts, the day has finally come. Our beloved Debangan has found in Shreya not just a partner, but a home. We could not be more full of joy.</p>
+        <p>Now we ask for the one thing that will make this evening complete: your presence, your laughter, and your blessings. Come, sit with us, and help us celebrate the beginning of their beautiful life together.</p>
+        <cite>Debasish Deb &amp; Kabita Deb</cite>
+      </blockquote>
+      <div class="credits">
+        <div><b>Starring: </b><span>Debangan, Shreya</span></div>
+        <div><b>Hosted by: </b><span>Debasish Deb, Kabita Deb</span></div>
+        <div><b>Genres: </b><span>Romance, Family, Celebration</span></div>
+        <div><b>This evening is: </b><span>Heartwarming, Joyful</span></div>
+        <div><b>With the blessings of: </b><span>Lord Shiva &amp; Goddess Parvati</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- blessing -->
+  <section class="bless">
+    <q>Every celebration is made richer by the people who show up for it.</q>
+    <span class="bn">আপনাদের স্নেহ ও আশীর্বাদ আমাদের কাছে সবচেয়ে মূল্যবান।</span>
+    <small>Your being there, beside us, is the greatest gift you can give our family.</small>
+  </section>
+</main>
+
+<footer>
+  <span>নিমন্ত্রণ · বউভাত · Debangan &amp; Shreya · 28.11.2026</span>
+  <span>Hosted by the Deb family, Kolkata</span>
+</footer>
+
+<!-- ═════ MORE INFO MODAL ═════ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="sheet">
+    <div class="sheet-hero">
+      <button class="close" id="closeInfo" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h3 id="modalTitle">Debangan &amp; Shreya</h3>
+    </div>
+    <div class="sheet-body">
+      <div>
+        <div class="meta" style="margin-top:0"><span class="match">100% Match</span><span>2026</span><span class="rating">U</span><span>One night only</span></div>
+        <p>Debasish Deb and Kabita Deb cordially invite you to the wedding reception of their son Debangan with Shreya. Saturday, 28 November 2026, from 7:00 PM at Eden City AB Block Ground, Kolkata.</p>
+      </div>
+      <dl>
+        <div><dt>Starring: </dt><dd>Debangan, Shreya</dd></div>
+        <div><dt>Hosted by: </dt><dd>Debasish Deb, Kabita Deb</dd></div>
+        <div><dt>Venue: </dt><dd>Eden City AB Block Ground</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── profiles ── */
+  const profiles = [
+    {name:'Family',     a:'#c4161c', b:'#7a0c10'},
+    {name:'Friends',    a:'#d4a24c', b:'#8a5a14'},
+    {name:'Colleagues', a:'#2f6f5e', b:'#143a30'},
+    {name:'Neighbours', a:'#4a5bb5', b:'#1f2a66'}
+  ];
+  const avatarSVG = p => `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="g${p.name}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.a}"/><stop offset="1" stop-color="${p.b}"/></linearGradient></defs><rect width="100" height="100" fill="url(#g${p.name})"/><g transform="translate(50 50) scale(.32)" style="color:rgba(255,255,255,.55)"><use href="#alpona"/></g><circle cx="38" cy="44" r="4" fill="#fff"/><circle cx="62" cy="44" r="4" fill="#fff"/><path d="M36 62q14 12 28 0" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`;
+  const wrap = document.getElementById('profiles');
+  profiles.forEach(p=>{
+    const b = document.createElement('button');
+    b.className = 'profile';
+    b.innerHTML = `<span class="avatar">${avatarSVG(p)}</span><span>${p.name}</span>`;
+    b.addEventListener('click',()=>enter(p));
+    wrap.appendChild(b);
+  });
+
+
+  /* ── per-profile content ── */
+  const parentsLetter = {
+    title:'A letter from the family <span class="bn">আমন্ত্রণ</span>',
+    body:'<p>After years of watching him grow, of dreams held quietly in our hearts, the day has finally come. Our beloved Debangan has found in Shreya not just a partner, but a home. We could not be more full of joy.</p><p>Now we ask for the one thing that will make this evening complete: your presence, your laughter, and your blessings. Come, sit with us, and help us celebrate the beginning of their beautiful life together.</p><cite>Debasish Deb &amp; Kabita Deb</cite>'
+  };
+  const content = {
+    Family:{
+      bn:'আপনাদের আশীর্বাদ ছাড়া এই সন্ধ্যা অসম্পূর্ণ।',
+      synopsis:'You watched Debangan grow up. Now come and bless the beginning of his new life with Shreya.',
+      letter:parentsLetter
+    },
+    Friends:{
+      synopsis:'You’ve been there for the late nights and the big decisions. This is the biggest one yet, and it won’t count unless you show up.',
+      letter:{
+        title:'A note from Debangan &amp; Shreya <span class="bn">ভালোবাসা সহ</span>',
+        body:'<p>We’ve shared so many evenings with you, and this is one we really don’t want to spend without you.</p><p>Come eat, laugh, and celebrate with us. It won’t feel complete until you’re there.</p><cite>Debangan &amp; Shreya</cite>'
+      }
+    },
+    Colleagues:{
+      synopsis:'We’d be delighted to have you with us as the Deb family celebrates Debangan and Shreya’s wedding reception.',
+      letter:{
+        title:'A note from Debangan &amp; Shreya <span class="bn">ভালোবাসা সহ</span>',
+        body:'<p>Thank you for being part of our everyday working lives. We’d be delighted if you could join us and our families as we celebrate this new beginning.</p><cite>Debangan &amp; Shreya</cite>'
+      }
+    },
+    Neighbours:{
+      synopsis:'From one doorstep to another: you’ve been part of our everyday life for years, and we’d love you to be part of this evening too.',
+      letter:{
+        title:'A letter from the Deb family <span class="bn">প্রতিবেশীদের জন্য</span>',
+        body:'<p>You’ve seen Debangan grow up from just next door, and shared in so many of our family’s small and big moments along the way.</p><p>Now he begins a new life with Shreya, and it would mean a great deal to us to have you there, celebrating with us as you always have.</p><cite>Debasish Deb &amp; Kabita Deb</cite>'
+      }
+    }
+  };
+  function applyProfile(name){
+    const c = content[name]; if(!c) return;
+    const bn = document.getElementById('greetBn');
+    bn.textContent = c.bn || ''; bn.hidden = !c.bn;
+    document.getElementById('synopsis').textContent = c.synopsis;
+    document.getElementById('letterTitle').innerHTML = c.letter.title;
+    document.getElementById('letterBody').innerHTML = c.letter.body;
+    document.getElementById('navLetter').textContent = c.letter.title.startsWith('A letter') ? 'The letter' : 'Their note';
+  }
+
+  const gate = document.getElementById('gate');
+  /* start the ident only once the Bangla + display fonts are loaded, so শুভ never renders half-shaped in a fallback font */
+  /* size each e-kar to exactly its glyph width: width(নে) minus width(ন) */
+  function fitEkar(){
+    const c = document.createElement('canvas').getContext('2d');
+    document.querySelectorAll('.ekar').forEach(el=>{
+      const cs = getComputedStyle(el);
+      c.font = cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+      const w = c.measureText('নে').width - c.measureText('ন').width;
+      if(w > 0) el.style.width = (w + 1) + 'px';
+    });
+  }
+  addEventListener('resize', fitEkar);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitEkar);
+  const ident = document.getElementById('ident');
+  const showWho = ()=>document.getElementById('who').classList.add('show');
+  function startIdent(){
+    if(ident.classList.contains('go')) return;
+    ident.classList.add('go');
+    fitEkar();
+    if(reduce) ident.style.display='none';
+    setTimeout(showWho, reduce ? 0 : 3700);
+  }
+  const fontsReady = Promise.resolve();
+  Promise.race([fontsReady, new Promise(r=>setTimeout(r,2500))]).then(startIdent, startIdent);
+
+  /* switch profile: reopen the Who’s watching screen without the intro */
+  document.getElementById('switchProfile').addEventListener('click',()=>{
+    document.getElementById('ident').style.display='none';
+    document.getElementById('who').classList.add('show');
+    gate.style.display='flex';
+    void gate.offsetWidth;
+    gate.classList.remove('out');
+    document.body.classList.add('locked');
+    const first = wrap.querySelector('.profile');
+    if(first) first.focus();
+  });
+
+  function enter(p){
+    applyProfile(p.name);
+    document.getElementById('meName').textContent = p.name;
+    document.getElementById('meAvatar').innerHTML = avatarSVG(p);
+    gate.classList.add('out');
+    document.body.classList.remove('locked');
+    window.scrollTo(0,0);
+    setTimeout(()=>{ gate.style.display='none'; resetScratch(); }, 650);
+  }
+
+  /* ── nav solid on scroll ── */
+  const nav = document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('solid', scrollY > 40), {passive:true});
+
+  /* ── countdown ── */
+  const target = new Date('2026-11-28T19:00:00+05:30').getTime();
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    let diff = Math.max(0, target - Date.now());
+    document.getElementById('cd-d').textContent = pad(Math.floor(diff/864e5));
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff%864e5/36e5));
+    document.getElementById('cd-m').textContent = pad(Math.floor(diff%36e5/6e4));
+    document.getElementById('cd-s').textContent = pad(Math.floor(diff%6e4/1e3));
+  }
+  tick(); setInterval(tick,1000);
+
+  /* ── modal ── */
+  const modal = document.getElementById('modal');
+  const openBtn = document.getElementById('openInfo');
+  const closeBtn = document.getElementById('closeInfo');
+  function openM(){ modal.classList.add('open'); document.body.classList.add('locked'); closeBtn.focus(); }
+  function closeM(){ modal.classList.remove('open'); document.body.classList.remove('locked'); openBtn.focus(); }
+  openBtn.addEventListener('click',openM);
+  closeBtn.addEventListener('click',closeM);
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeM(); });
+  addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeM(); });
+
+  /* ── scratch card ── */
+  const art = document.getElementById('dateArt');
+  const cv = document.getElementById('scratch');
+  const ctx = cv.getContext('2d');
+  const hint = document.getElementById('scratchHint');
+  let done=false, down=false, lx=0, ly=0, moves=0;
+
+  function paint(w,h){
+    ctx.globalCompositeOperation='source-over';
+    const g = ctx.createLinearGradient(0,0,w,h);
+    g.addColorStop(0,'#d42a2f'); g.addColorStop(.55,'#9e1015'); g.addColorStop(1,'#5a070a');
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    const s = ctx.createRadialGradient(w*.25,h*.2,0,w*.25,h*.2,Math.max(w,h));
+    s.addColorStop(0,'rgba(255,255,255,.22)'); s.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=s; ctx.fillRect(0,0,w,h);
+    ctx.globalAlpha=.07; ctx.strokeStyle='#fff'; ctx.lineWidth=2;
+    for(let x=-h;x<w+h;x+=18){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+h,h);ctx.stroke();}
+    ctx.globalAlpha=1;
+    ctx.fillStyle='#f1d9a3'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.font='400 '+Math.round(Math.min(w*.09,40))+'px "Bebas Neue", Impact, sans-serif';
+    ctx.fillText('SCRATCH TO REVEAL', w/2, h/2);
+    ctx.font='500 13px "DM Sans", sans-serif';
+    ctx.fillStyle='rgba(255,255,255,.8)';
+    ctx.fillText('the premiere date', w/2, h/2 + Math.min(w*.09,40)*.8);
+  }
+  function sizeScratch(){
+    if(done) return;
+    const r = art.getBoundingClientRect();
+    if(!r.width) return;
+    const dpr = devicePixelRatio || 1;
+    cv.width = r.width*dpr; cv.height = r.height*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    paint(r.width, r.height);
+  }
+  function pos(e){ const r=cv.getBoundingClientRect(); const t=e.touches&&e.touches[0]||e; return {x:t.clientX-r.left,y:t.clientY-r.top}; }
+  function dot(x,y){ ctx.globalCompositeOperation='destination-out'; ctx.beginPath(); ctx.arc(x,y,22,0,Math.PI*2); ctx.fill(); }
+  function check(){
+    if(++moves%6) return;
+    let d; try{ d=ctx.getImageData(0,0,cv.width,cv.height).data; }catch(_){ return; }
+    let c=0,n=0; for(let i=3;i<d.length;i+=240){ n++; if(d[i]<40) c++; }
+    if(n && c/n>.5) reveal();
+  }
+  function reveal(){
+    if(done) return; done=true;
+    cv.classList.add('done');
+    hint.textContent='See you on Saturday, 28 November at 7:00 PM.';
+    document.getElementById('revealBtn').parentElement.style.display='none';
+  }
+  function resetScratch(){
+    done=false; down=false; moves=0;
+    cv.classList.remove('done');
+    hint.textContent='Scratch the card above to reveal when the show begins.';
+    document.getElementById('revealBtn').parentElement.style.display='';
+    sizeScratch();
+  }
+  function start(e){ if(done) return; down=true; const p=pos(e); lx=p.x; ly=p.y; dot(p.x,p.y); if(e.cancelable) e.preventDefault(); }
+  function move(e){
+    if(!down||done) return; const p=pos(e);
+    const steps=Math.max(1,Math.floor(Math.hypot(p.x-lx,p.y-ly)/5));
+    for(let i=0;i<=steps;i++) dot(lx+(p.x-lx)*i/steps, ly+(p.y-ly)*i/steps);
+    lx=p.x; ly=p.y; check(); if(e.cancelable) e.preventDefault();
+  }
+  cv.addEventListener('mousedown',start); cv.addEventListener('mousemove',move); addEventListener('mouseup',()=>down=false);
+  cv.addEventListener('touchstart',start,{passive:false}); cv.addEventListener('touchmove',move,{passive:false}); cv.addEventListener('touchend',()=>down=false);
+  document.getElementById('revealBtn').addEventListener('click',reveal);
+  addEventListener('resize',sizeScratch);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(sizeScratch);
+  sizeScratch();
+})();
+</script>
+</body>
+</html>
