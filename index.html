@@ -88,6 +88,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .profile:hover,.profile:focus-visible{color:var(--text)}
 .profile span{font-size:clamp(.85rem,2vw,1.1rem)}
 .who p{margin-top:2.5rem;color:var(--muted);font-size:.85rem}
+/* phones: always a neat 2 x 2 grid of profiles */
+@media(max-width:640px){.profiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem 1.6rem;width:min(78vw,300px);margin:0 auto}.profile{width:100%}.who h1{margin-bottom:1.6rem}.who p{margin-top:2rem}}
 
 /* ───────── NAV ───────── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:2rem;padding:calc(env(safe-area-inset-top,0px) + .9rem) clamp(1rem,4vw,3.5rem) .9rem;background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,0));transition:background .3s ease}
