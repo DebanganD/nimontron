@@ -356,7 +356,7 @@ footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem
         <div class="tile-body">
           <h3>Debasish Deb &amp; Kabita Deb</h3>
           <p class="bn">দেবাশীষ দেব ও কবিতা দেব</p>
-          <div class="act"><a class="pill" href="#letter">Read their letter</a></div>
+          <div class="act"><a class="pill" href="#letter" id="letterBtn">Read their letter</a></div>
         </div>
       </article>
     </div>
@@ -364,7 +364,7 @@ footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem
 
   <!-- letter -->
   <section class="row" id="letter">
-    <h2 id="letterTitle">A letter from the family <span class="bn">আমন্ত্রণ</span></h2>
+    <h2 id="letterTitle">A letter from Debasish &amp; Kabita Deb <span class="bn">আমন্ত্রণ</span></h2>
     <div class="letter">
       <blockquote id="letterBody">
         <p>After years of watching him grow, of dreams held quietly in our hearts, the day has finally come. Our beloved Debangan has found in Shreya not just a partner, but a home. We could not be more full of joy.</p>
@@ -439,7 +439,7 @@ footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem
 
   /* ── per-profile content ── */
   const parentsLetter = {
-    title:'A letter from the family <span class="bn">আমন্ত্রণ</span>',
+    title:'A letter from Debasish &amp; Kabita Deb <span class="bn">আমন্ত্রণ</span>',
     body:'<p>After years of watching him grow, of dreams held quietly in our hearts, the day has finally come. Our beloved Debangan has found in Shreya not just a partner, but a home. We could not be more full of joy.</p><p>Now we ask for the one thing that will make this evening complete: your presence, your laughter, and your blessings. Come, sit with us, and help us celebrate the beginning of their beautiful life together.</p><cite>Debasish Deb &amp; Kabita Deb</cite>'
   };
   const content = {
@@ -465,7 +465,7 @@ footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem
     Neighbours:{
       synopsis:'From one doorstep to another: you’ve been part of our everyday life for years, and we’d love you to be part of this evening too.',
       letter:{
-        title:'A letter from the Deb family <span class="bn">প্রতিবেশীদের জন্য</span>',
+        title:'A letter from Debasish &amp; Kabita Deb <span class="bn">প্রতিবেশীদের জন্য</span>',
         body:'<p>You’ve seen Debangan grow up from just next door, and shared in so many of our family’s small and big moments along the way.</p><p>Now he begins a new life with Shreya, and it would mean a great deal to us to have you there, celebrating with us as you always have.</p><cite>Debasish Deb &amp; Kabita Deb</cite>'
       }
     }
@@ -478,6 +478,7 @@ footer{padding:2.5rem clamp(1rem,4vw,3.5rem) 3rem;color:#808080;font-size:.85rem
     document.getElementById('letterTitle').innerHTML = c.letter.title;
     document.getElementById('letterBody').innerHTML = c.letter.body;
     document.getElementById('navLetter').textContent = c.letter.title.startsWith('A letter') ? 'The letter' : 'Their note';
+    document.getElementById('letterBtn').textContent = c.letter.title.startsWith('A letter') ? 'Read their letter' : 'Read Debangan & Shreya’s note';
   }
 
   const gate = document.getElementById('gate');
